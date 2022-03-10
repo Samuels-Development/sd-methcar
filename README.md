@@ -1,5 +1,5 @@
 # qb-methcar
-Hello! This is an edit of the normal qb-methcar, but to use qb-menu and qb-target instead!
+Hello! This is an edit of the normal qb-methcar, but to use qb-menu and qb-target instead! The Shop solution seen in the preview video isn't a part of the script. So you'll have to add your own Shop for the items!
 
 - [Preview](https://www.youtube.com/watch?v=DxdVkQSX17I)
 
