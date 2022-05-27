@@ -1,7 +1,5 @@
 # qb-methcar
 
-# Seems to not be working with the newest QB-Core update!
-
 - [Preview](https://www.youtube.com/watch?v=DxdVkQSX17I)
 
 ## Dependencies
