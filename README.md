@@ -1,5 +1,7 @@
 # qb-methcar
 
+# Doesn't include the shop ped featured in the preview video.
+
 - [Preview](https://www.youtube.com/watch?v=DxdVkQSX17I)
 
 ## Dependencies
