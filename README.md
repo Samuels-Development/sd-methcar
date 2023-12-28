@@ -1,58 +1,32 @@
-# qb-methcar
+# sd-methcar
 
-# Doesn't include the shop ped featured in the preview video.
+This was initially qb-methcar, but has since been almost fully rewritten.
 
-- [Preview](https://www.youtube.com/watch?v=DxdVkQSX17I)
+Feel free to star the repository and check out my store and discord @ Discord: https://discord.gg/samueldev & Store: https://fivem.samueldev.shop 
+For support inquires please create a post in the support-forum channel on discord or create an issue here on Github.
+
+### Video Preview
+
+https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/8da0801f-229f-4bd0-ae68-dfe43eafdc61
+
 
 ## Dependencies
-- [qb-core](https://github.com/qbcore-framework/qb-core)
-- [qb-target](https://github.com/BerkieBb/qb-target)
-- [qb-inventory](https://github.com/qbcore-framework/qb-inventory) *or* as showcased in the video lj-inventory!
+- [qb-core](https://github.com/qbcore-framework/qb-core) or [es_extended](https://github.com/esx-framework)
+- ox_lib & ox_target
 
-Thanks for showing your personal interest in my work! 
-Please consider supporting ❤
-
-🔗 > https://discord.gg/Tu94MCDDEa
-🔗 > https://samuels-development.dev/
 
 ## Installation
-### Manually
-1. Place the qb-methcar folder anywhere into your resources folder and ensure/start it in your server/resources.cfg
 
-2. Add these items to your qb-core/shared/items.lua
-#
+1. Clone or download this resource.
+2. Place it in the server's resource directory.
+3. Add the resource to your server config, if needed.
+
+### Configuration
+All available configurations can be found in shared/sh_config.lua
+
+### Items
 
 	["acetone"] 				 	 = {["name"] = "acetone", 			  			["label"] = "Acetone", 					["weight"] = 5000, 		["type"] = "item", 		["image"] = "acetone.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "It is a colourless, highly volatile and flammable liquid with a characteristic pungent odour."},
-  
 	["methlab"] 				 	 = {["name"] = "methlab", 			  			["label"] = "Lab", 						["weight"] = 15000, 	["type"] = "item", 		["image"] = "lab.png", 					["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "A portable Meth Lab"},
-  
 	["lithium"] 				 	 = {["name"] = "lithium", 			  			["label"] = "Lithium", 					["weight"] = 1000, 		["type"] = "item", 		["image"] = "lithium.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Lithium, something you can make Meth with!"},
 
-3. Add the images contained in the file to your html/images of your respective inventory system!
-
-4. Go to your qb-target/init.lua and add this to your Config.GlobalVehicleOptions
-#
-```
-Config.GlobalVehicleOptions = {
-    options = {
-        {
-            type = 'client',
-            event = 'qb-methcar:cook',
-            icon = 'fas fa-blender',
-            label = 'Lets cook!',
-			canInteract = function(entity)
-                if GetVehicleEngineHealth(entity) <= 0 then return false end
-                	local model = GetEntityModel(entity)
-					local modelName = GetDisplayNameFromVehicleModel(model)
-					if modelName == 'JOURNEY' then
-                    return true
-                end
-                return false
-            end
-        },
-    },
-    distance = 2.0,
-}
-```
-
-5. Done! :)
