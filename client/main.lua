@@ -6,7 +6,6 @@ local failedAttempts = 0
 local hasBeenDrugged = false
 local policeAlerted = false
 
--- Police Alert for Oxy Run (Drug Deal/Suspicious Handoff) (Used Dispatch System can be changed in sd_lib/sh_config.lua)
 function policeAlert()
 
     -- Add your own Dispatch into this function.
@@ -88,7 +87,6 @@ local handleQuestionSelect = function(correctAnswer)
     pause = false
 
     if correctAnswer then
-        -- Logic for correct answer
         quality = quality + math.random(2, 5)
         failedAttempts = 0 
     else
@@ -97,19 +95,19 @@ local handleQuestionSelect = function(correctAnswer)
 
         if not hasBeenDrugged and math.random(1, 100) <= 40 then
             drugged()
-            hasBeenDrugged = true  -- Set flag to true to prevent getting drugged again
-            return  -- Exit the function since drugged state is significant
+            hasBeenDrugged = true 
+            return 
         end
 
         if not policeAlerted and math.random(1, 100) <= 20 then 
             policeAlert()
-            policeAlerted = true  -- Set flag to true to prevent alerting the police again
+            policeAlerted = true 
         end
 
         if failedAttempts >= 3 then
             quality = 0
-            TriggerEvent('sd-methcar:client:finish')  -- Trigger finish event with zero quality
-            return  -- Exit the function to stop further processing
+            TriggerEvent('sd-methcar:client:finish') 
+            return 
         end
     end
 
@@ -134,7 +132,7 @@ local createOptions = function(questionSet)
         local q = questionSet[i]
         table.insert(options, {
             title = q.question,
-            icon = 'fa-solid fa-comment',  -- Example icon, replace with your icon name or path
+            icon = 'fa-solid fa-comment',
             onSelect = function() handleQuestionSelect(q.correctAnswer) end
         })
     end
@@ -146,7 +144,7 @@ local handleEvent = function(eventId, questionSet)
     pause = true
     lib.registerContext({
         id = eventId,
-        title = questionSet.title,  -- Use the title from the question set
+        title = questionSet.title, 
         options = createOptions(questionSet)
     })
     lib.showContext(eventId)
@@ -204,10 +202,9 @@ CreateThread(function()
                 if progress >= 100 then
                     -- Trigger the finish event
                     TriggerEvent('sd-methcar:client:finish')
-                    break  -- Exit the loop as production is finished
+                    break
                 end
 
-                -- Check if a question needs to be asked at this stage
                 if Config.Questions[progress] then
                     pause = true
                     local questionSet = getRandomQuestionSet(progress)
@@ -215,7 +212,7 @@ CreateThread(function()
                         handleEvent('methcar_event_' .. tostring(progress), questionSet)
                     end
                 else
-                    TriggerEvent('sd-methcar:client:process', progress)  -- Continue processing if no question
+                    TriggerEvent('sd-methcar:client:process', progress) 
                 end
 
                 Wait(2000)
