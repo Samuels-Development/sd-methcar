@@ -5,11 +5,6 @@ This was initially qb-methcar, but has since been almost fully rewritten.
 Feel free to star the repository and check out my store and discord @ Discord: https://discord.gg/samueldev & Store: https://fivem.samueldev.shop 
 For support inquires please create a post in the support-forum channel on discord or create an issue here on Github.
 
-### Video Preview
-
-https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/8da0801f-229f-4bd0-ae68-dfe43eafdc61
-
-
 ## Dependencies
 - [qb-core](https://github.com/qbcore-framework/qb-core) or [es_extended](https://github.com/esx-framework)
 - ox_lib & ox_target
