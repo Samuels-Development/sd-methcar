@@ -175,6 +175,14 @@ RegisterNetEvent('sd-methcar:client:cook', function()
 	end
 end)
 
+RegisterNetEvent('sd-methcar:client:stop', function()
+	local LastVehicle = GetClosestVehicle()
+	started = false
+	progress = 0
+	ShowNotification("Production stopped...", "error")
+	FreezeEntityPosition(LastVehicle, false)
+end)
+
 RegisterNetEvent('sd-methcar:client:process', function(progress)
     local questionSet = getRandomQuestionSet(progress)
     if questionSet then
@@ -183,9 +191,9 @@ RegisterNetEvent('sd-methcar:client:process', function(progress)
 end)
 
 RegisterNetEvent('sd-methcar:client:finish', function()
-	started = false quality = 0 hasBeenDrugged = false policeAlerted = false TriggerEvent('sd-methcar:client:stop')
 	TriggerServerEvent('sd-methcar:server:finish', quality)
 	SetPedPropIndex(playerPed, 1, 0, 0, true)
+    started = false quality = 0 hasBeenDrugged = false policeAlerted = false TriggerEvent('sd-methcar:client:stop')
 end)
 
 CreateThread(function()
@@ -221,17 +229,21 @@ CreateThread(function()
     end
 end)
 
+RegisterNetEvent('sd-methcar:client:startcook', function()
+    TriggerServerEvent('sd-methcar:server:startcook')
+end)
+
 -- Adding target to the 'Journey'
 CreateThread(function()
 	local methCar = 'journey'
 
     exports.ox_target:addModel(methCar, {
         {
-			event = 'sd-methcar:client:cook',
+			event = 'sd-methcar:client:startcook',
             icon = 'fas fa-fire-burner',
             label = 'Start Cooking',
             distance = 1.5,
-			-- items = 'methlab'
+			items = 'methlab'
         }
     })
 

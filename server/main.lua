@@ -1,21 +1,24 @@
 RegisterNetEvent('sd-methcar:server:start', function()
 	local src = source
-	local Player = GetPlayer(source)
+	TriggerClientEvent("sd-methcar:client:startproduction", src)
+end)
+
+RegisterNetEvent("sd-methcar:server:startcook", function()
+	local src = source
 	local ItemAcetone = HasItem(src, "acetone")
     local ItemLithium = HasItem(src, "lithium")
 	local ItemMethlab = HasItem(src, "methlab")
 	if ItemAcetone ~= nil and ItemLithium ~= nil and ItemMethlab ~= nil then
-		if ItemAcetone >= 5 and ItemLithium >= 2 and ItemMethlab >= 1 then	
-			TriggerClientEvent("sd-methcar:client:startproduction", src)
+		if ItemAcetone >= 5 and ItemLithium >= 2 and ItemMethlab >= 1 then
 			RemoveItem(src, "acetone", 5, false)
 			RemoveItem(src, "lithium", 2, false)
+			TriggerClientEvent('sd-methcar:client:cook', src)
 		else
-		TriggerClientEvent('qb-methcar:stop', src)
-		TriggerClientEvent('sd-methcar:notification', src, "U don't have enough ingredients to cook!", 'error')
+			TriggerClientEvent('sd-methcar:client:stop', src)
+			TriggerClientEvent('sd-methcar:notification', source, "You're missing essential ingredients!", 'error')
 		end
-	else
-	TriggerClientEvent('qb-methcar:stop', src)
-	TriggerClientEvent('sd-methcar:notification', source, "You're missing essential ingredients!", 'error')
+		else
+		TriggerClientEvent('sd-methcar:client:stop', src)
 	end
 end)
 
