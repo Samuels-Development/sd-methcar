@@ -7,7 +7,7 @@ For support inquires please create a post in the support-forum channel on discor
 
 ## Dependencies
 - [qb-core](https://github.com/qbcore-framework/qb-core) or [es_extended](https://github.com/esx-framework)
-- ox_lib & ox_target
+- ox_lib
 
 
 ## Installation
