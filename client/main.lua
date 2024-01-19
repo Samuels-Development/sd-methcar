@@ -235,18 +235,19 @@ end)
 
 -- Adding target to the 'Journey'
 CreateThread(function()
-	local methCar = 'journey'
+    local methCar = 'journey'
 
-    exports.ox_target:addModel(methCar, {
-        {
-			event = 'sd-methcar:client:startcook',
-            icon = 'fas fa-fire-burner',
-            label = 'Start Cooking',
-            distance = 1.5,
-			items = 'methlab'
-        }
+    -- If you're using an outdated qb-target, please change 'qtarget' to ['qb-target'] (like this exports['qb-target']:AddTargetModel)
+    exports.qtarget:AddTargetModel(methCar, {
+        options = {
+            {
+                event = 'sd-methcar:client:startcook',
+                icon = 'fas fa-fire',
+                label = 'Start Cooking',
+            },
+        },
+        distance = 1.5,
     })
-
 end)
 
 
